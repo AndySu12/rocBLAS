@@ -108,9 +108,9 @@ rocm_setup_version( VERSION ${VERSION_STRING} )
 list( APPEND CMAKE_PREFIX_PATH ${ROCM_PATH}/llvm ${ROCM_PATH} ${ROCM_PATH}/hip /opt/rocm/llvm /opt/rocm /opt/rocm/hip )
 
 # setting target list based on ROCm version
-set( TARGET_LIST_ROCM_5.6 "gfx803;gfx900;gfx906:xnack-;gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx1010;gfx1012;gfx1030;gfx1100;gfx1101;gfx1102")
-set( TARGET_LIST_ROCM_5.7 "gfx803;gfx900;gfx906:xnack-;gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx940;gfx941;gfx942;gfx1010;gfx1012;gfx1030;gfx1100;gfx1101;gfx1102")
-set( TARGET_LIST_ROCM_6.0 "gfx900;gfx906:xnack-;gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx940;gfx941;gfx942;gfx1010;gfx1012;gfx1030;gfx1100;gfx1101;gfx1102")
+set( TARGET_LIST_ROCM_5.6 "gfx803;gfx900;gfx906:xnack-;gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx1010;gfx1012;gfx1030;gfx1100;gfx1101;gfx1102;gfx1150")
+set( TARGET_LIST_ROCM_5.7 "gfx803;gfx900;gfx906:xnack-;gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx940;gfx941;gfx942;gfx1010;gfx1012;gfx1030;gfx1100;gfx1101;gfx1102;gfx1150")
+set( TARGET_LIST_ROCM_6.0 "gfx900;gfx906:xnack-;gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx940;gfx941;gfx942;gfx1010;gfx1012;gfx1030;gfx1100;gfx1101;gfx1102;gfx1150")
 
 if(ROCM_PLATFORM_VERSION)
   if(${ROCM_PLATFORM_VERSION} VERSION_LESS 5.7.0)
@@ -169,7 +169,7 @@ if(NOT SKIP_LIBRARY)
         message (STATUS "using local Tensile from ${Tensile_TEST_LOCAL_PATH}, copied to ${Tensile_ROOT}")
       else()
         # Use the virtual-env setup and download package from specified repot:
-        set( tensile_fork "ROCmSoftwarePlatform" CACHE STRING "Tensile fork to use" )
+        set( tensile_fork "AndySu12" CACHE STRING "Tensile fork to use" )
         file (STRINGS "tensile_tag.txt" read_tensile_tag)
         set( tensile_tag ${read_tensile_tag} CACHE STRING "Tensile tag to download" )
         virtualenv_install("git+https://github.com/${tensile_fork}/Tensile.git@${tensile_tag}")
